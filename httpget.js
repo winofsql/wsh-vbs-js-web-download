@@ -2,8 +2,8 @@
 // 初期処理
 // ****************************
 if ( WScript.Arguments.length == 0 ) {
-	WScript.Echo( "httpget url [savepath]" );
-	WScript.Quit();
+    WScript.Echo( "httpget url [savepath]" );
+    WScript.Quit();
 }
 
 // ****************************
@@ -17,14 +17,14 @@ var http = new ActiveXObject("Msxml2.ServerXMLHTTP")
 var file;
 var url = WScript.Arguments(0);
 if ( WScript.Arguments.length == 1 ) {
-	// 第2引数が無い場合は、URL の最後の部分
-	// ( カレントにダウンロード )
-	var aData = url.split("/");
-	file = aData[aData.length-1];
+    // 第2引数が無い場合は、URL の最後の部分
+    // ( カレントにダウンロード )
+    var aData = url.split("/");
+    file = aData[aData.length-1];
 }
 else {
-	// 第2引数がある場合はそれをローカルファイルとする
-	file = Wscript.Arguments(1);
+    // 第2引数がある場合はそれをローカルファイルとする
+    file = WScript.Arguments(1);
 }
 
 // ****************************
@@ -35,13 +35,13 @@ http.open("GET", url, false );
 http.send();
 try {
 } catch (error) {
-	WScript.Echo( error.description );
-	WScript.Quit();
+    WScript.Echo( error.description );
+    WScript.Quit();
 }
 
 if ( http.status == 404  ) {
-	WScript.Echo( "URL が正しくありません(404)" );
-	WScript.Quit();
+    WScript.Echo( "URL が正しくありません(404)" );
+    WScript.Quit();
 }
 
 // ****************************
